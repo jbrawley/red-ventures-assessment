@@ -1,0 +1,19 @@
+{
+  "name": "test-files",
+  "version": "1.0.0",
+  "description": "Red Ventures Assessment",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "wdio-jasmine-framework": "^0.3.1",
+    "webdriverio": "^4.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jake Brawley",
+  "license": "ISC"
+}
