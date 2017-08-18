@@ -1,10 +1,16 @@
 describe('Verify logos and graphics are visible', () => {
     it('Should check if masthead logo is visible', async function () {
         browser.url('/');
-		isVisible = browser.isVisible('li.name>.masthead__logo');
-        //isVisible = browser.isVisible('div.small-12.columns>.masthead__logo' //selector for full screen
+		//isVisible = browser.isVisible('li.name>.masthead__logo');
+        isVisible = browser.isVisible('div.small-12.columns>.masthead__logo'); //selector for full screen
 		expect(isVisible).toBe(true);
-        
+    })
+    it('Should check if mega menu arrows are visible', async function () {
+        browser.url('/');
+		isVisible = browser.isVisible('#menu-item-4313 a::after');
+        //isVisible = browser.isVisible('div.small-12.columns>.masthead__logo' //selector for full screen
+		expect(isVisible).toBe(true); 
+	})   
 /*
     it('should check multiple elements are visible', async function () {
         const isVisible = await browser.isVisible('.visibletest')
@@ -14,5 +20,5 @@ describe('Verify logos and graphics are visible', () => {
     })
 
 */
-	})
+	
 })
