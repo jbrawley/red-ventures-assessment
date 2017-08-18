@@ -10,11 +10,12 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './spec/**/*.js'
+        './spec/**/*.*.js'
     ],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
+         './spec/**/*example*'
     ],
     //
     // ============
@@ -232,6 +233,22 @@ exports.config = {
      */
     // afterTest: function (test) {
     // },
+    /* 
+    afterTest: function (test) {
+        // if test passed, ignore, else take and save screenshot.
+        if (test.passed) {
+            return;
+        }
+        // get current test title and clean it, to use it as file name
+        var filename = encodeURIComponent(test.title.replace(/\s+/g, '-'));
+        // build file path
+        var filePath = this.screenshotPath + filename + '.png';
+        // save screenshot
+        browser.saveScreenshot(filePath);
+        console.log('\n\tScreenshot location:', filePath, '\n');
+    },
+    */
+    // 
     /**
      * Hook that gets executed after the suite has ended
      * @param {Object} suite suite details
