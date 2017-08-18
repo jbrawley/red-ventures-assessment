@@ -123,7 +123,7 @@ exports.config = {
     //
     // Options to be passed to Jasmine.
     // 
-    reporters: ['dot'],
+    reporters: ['dot', 'spec'],
     reporterOptions: {
         outputDir: './'
     },
@@ -171,9 +171,9 @@ exports.config = {
 
 
 
-    //beforeSession: function (config, capabilities, specs) {
-      
-    //},
+    before: function (capabilities, specs) {
+        browser.windowHandleSize({width: 1366, height: 768})
+    },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
@@ -233,7 +233,7 @@ exports.config = {
      */
     // afterTest: function (test) {
     // },
-    /* 
+    
     afterTest: function (test) {
         // if test passed, ignore, else take and save screenshot.
         if (test.passed) {
@@ -247,7 +247,7 @@ exports.config = {
         browser.saveScreenshot(filePath);
         console.log('\n\tScreenshot location:', filePath, '\n');
     },
-    */
+    
     // 
     /**
      * Hook that gets executed after the suite has ended
