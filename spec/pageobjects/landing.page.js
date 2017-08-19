@@ -21,7 +21,7 @@ class LandingPage extends Page {
     get footerLogo()                        { return browser.element('img[src*="/assets/seo-b/images/logos/logo-ftr-black.png'); }
 
     //1366 prices, phone numbers, and timer
-    get mastheadPhoneNumber()                      { return browser.element('body > header > div.show-for-large-up > section > div > div.small-4.columns.text-right > a'); }
+    get mastheadPhoneNumber()                      { return browser.element('body > header > div.show-for-large-up > section > div > div.small-4.columns.is-align-right > a'); }
     
     //1024 components
     get smallYellowPhoneIconInStickyBanner()     { return browser.element('body > header > div.hide-for-large-up > nav > div.row.small-collapse > div > div > a > span.masthead__phone-icon.icon-phone'); }

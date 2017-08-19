@@ -7,8 +7,8 @@ describe('Verify components are correctly formatted 1366 in ', () => {
     LandingPage.open();
 
     it('Should check if masthead phone number is visible', function () {
-    	console.log(phoneNumber);
-    	//expect(LandingPage.mastheadPhoneNumber.isVisible()).toBe(true);
+    	
+    	expect(LandingPage.mastheadPhoneNumber.isVisible()).toBe(true);
     });
     
     it('Should check if masthead phone number is correctly formatted', function () {
