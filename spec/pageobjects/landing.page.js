@@ -8,7 +8,7 @@ var Page = require('./page')
 
 
 class LandingPage extends Page {
-    //1366 components
+    //1366 images and graphics
     get mastheadLogo()                      { return browser.element('.small-12.columns>.masthead__logo'); }
     get phoneIconInMastheadBanner()         { return browser.element('body > header > div.show-for-large-up > section > div > div.small-4.columns.is-align-right > div'); }
     get phoneIconInRegionBanner()           { return browser.element('body > main > section.banner.banner--countdown.has-bg-primary > div > div.large-4.columns > div > div'); }
@@ -19,19 +19,28 @@ class LandingPage extends Page {
     get secondImageLeftColumn()             { return browser.element('img[src*="/assets/seo-b/images/sections/bg-section-home-two-col-2.png'); }
     get thirdImageRightColumn()             { return browser.element('img[src*="/assets/seo-b/images/sections/bg-section-home-two-col-3.png'); }
     get footerLogo()                        { return browser.element('img[src*="/assets/seo-b/images/logos/logo-ftr-black.png'); }
+
+    //1366 prices, phone numbers, and timer
+    get mastheadPhoneNumber()                      { return browser.element('body > header > div.show-for-large-up > section > div > div.small-4.columns.text-right > a'); }
     
     //1024 components
     get smallYellowPhoneIconInStickyBanner()     { return browser.element('body > header > div.hide-for-large-up > nav > div.row.small-collapse > div > div > a > span.masthead__phone-icon.icon-phone'); }
     get topYellowPhoneIcon()                     { return browser.element('body > main > section:nth-child(2) > div > div > div > svg'); }
     get bottomYellowPhoneIcon()                  { return browser.element('body > main > section:nth-child(13) > div > div > div > svg'); }
     
+    //640 components
+    get mobileMenu()                             { return browser.element('body > header > div.hide-for-large-up > nav > div.row.has-bg-white > div > ul > li.toggle-topbar.top-bar--custom__toggle-topbar'); }
+    
+
+
     open() {
-        super.open();
+        super.open('/');
     }
     
     submit() {
         this.form.submitForm();
     }
     
+
 }
 module.exports = LandingPage;
