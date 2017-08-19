@@ -1,5 +1,5 @@
 /*
- * Main Page object class that all other page objects will inherit from
+ * Main Page object class that all other page objects will inherit from ES6 class
  */
 
 "use strict";
@@ -11,4 +11,4 @@ class Page {
 		browser.url('/' + path);
 	}
 }
-module.exports = new Page();
+module.exports = Page;

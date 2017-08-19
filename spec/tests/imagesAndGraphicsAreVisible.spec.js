@@ -1,7 +1,10 @@
+var LandingPage = require('../../spec/pageobjects/landing.page');
+var instanceLandingPage = new LandingPage();
 describe('Verify logos and graphics are visible for 1366', () => {
 		
 	// Open browser on landing pagecd
-	browser.url('/');   
+	//browser.url('/');   
+    LandingPage.open();
     
     it('Should check if masthead logo is visible for 1366, 1024, 640', async function () {
         isVisible = browser.isVisible('.small-12.columns>.masthead__logo'); 
