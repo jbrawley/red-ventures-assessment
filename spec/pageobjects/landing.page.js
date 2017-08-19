@@ -25,7 +25,7 @@ class LandingPage extends Page {
     get regionBannerPhoneNumber()                       { return browser.element('body > main > section.banner.banner--countdown.has-bg-primary > div > div.large-4.columns > div > a'); }
     get mastfootPhoneNumber()                           { return browser.element('body > section > div > div.small-12.medium-6.columns.medium-text-left > div > a'); }
     get leftColumnButtonPhoneNumber()                   { return browser.element('body > main > section:nth-child(6) > div > div:nth-child(1) > a'); }
-   
+    get rightColumnButtonPhoneNumber()                  { return browser.element('body > main > section:nth-child(9) > div > div:nth-child(4) > a > span.h-phone'); }
 
    //1024 components
     get smallYellowPhoneIconInStickyBanner()     { return browser.element('body > header > div.hide-for-large-up > nav > div.row.small-collapse > div > div > a > span.masthead__phone-icon.icon-phone'); }
