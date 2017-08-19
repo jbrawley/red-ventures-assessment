@@ -8,13 +8,25 @@ var Page = require('./page')
 
 
 class LandingPage extends Page {
-    get username()  { return browser.element('#username'); }
-    get password()  { return browser.element('#password'); }
-    get form()      { return browser.element('#login'); }
-    get flash()     { return browser.element('#flash'); }
+    //1366 components
+    get mastheadLogo()                      { return browser.element('.small-12.columns>.masthead__logo'); }
+    get phoneIconInMastheadBanner()         { return browser.element('body > header > div.show-for-large-up > section > div > div.small-4.columns.is-align-right > div'); }
+    get phoneIconInRegionBanner()           { return browser.element('body > main > section.banner.banner--countdown.has-bg-primary > div > div.large-4.columns > div > div'); }
+    get phoneIconInMasfootBanner()          { return browser.element('body > section > div > div.small-12.medium-6.columns.medium-text-left > div > div'); }
+    get priceTagIcon()                      { return browser.element('body > main > section.banner.banner--address > div:nth-child(1) > div > h3 ::before'); }
+    get heroImage()                         { return browser.element('body > main > section.hero-wordpress > div > div.small-5.columns.show-for-large-up > div'); }
+    get firstImageRightColumn()             { return browser.element('img[src*="/assets/seo-b/images/sections/bg-section-home-two-col-1.png'); }
+    get secondImageLeftColumn()             { return browser.element('img[src*="/assets/seo-b/images/sections/bg-section-home-two-col-2.png'); }
+    get thirdImageRightColumn()             { return browser.element('img[src*="/assets/seo-b/images/sections/bg-section-home-two-col-3.png'); }
+    get footerLogo()                        { return browser.element('img[src*="/assets/seo-b/images/logos/logo-ftr-black.png'); }
+    
+    //1024 components
+    get smallYellowPhoneIconInStickyBanner()     { return browser.element('body > header > div.hide-for-large-up > nav > div.row.small-collapse > div > div > a > span.masthead__phone-icon.icon-phone'); }
+    get topYellowPhoneIcon()                     { return browser.element('body > main > section:nth-child(2) > div > div > div > svg'); }
+    get bottomYellowPhoneIcon()                  { return browser.element('body > main > section:nth-child(13) > div > div > div > svg'); }
     
     open() {
-        super.open('/');
+        super.open();
     }
     
     submit() {

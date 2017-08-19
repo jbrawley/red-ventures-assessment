@@ -8,7 +8,8 @@ class Page {
 		this.title = 'My Page';
 	}
 	open(path) {
-		browser.url('/' + path);
+		//browser.url('/' + path);
+		browser.url(path);
 	}
 }
 module.exports = Page;
