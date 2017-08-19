@@ -2,7 +2,7 @@ var LandingPage = require('../../spec/pageobjects/landing.page');
 var LandingPage = new LandingPage();
 
 
-describe('Verify components are correctly formatted 1366 in ', () => {
+describe('Verify components are correctly formatted in ', () => {
 
 	var phoneNumberRegex = new RegExp("1-\\d{3}-\\d{3}-\\d{4}");
 
@@ -10,7 +10,7 @@ describe('Verify components are correctly formatted 1366 in ', () => {
 	// Open browser on landing page 
     LandingPage.open();
 
-    it('Should check if masthead phone number is correctly formatted', function () {
+    it('Should check if masthead phone number is correctly fogit strmatted', function () {
     	expect(LandingPage.mastheadPhoneNumber.getText()).toMatch(phoneNumberRegex.source);
     });
 
