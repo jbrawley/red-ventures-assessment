@@ -43,12 +43,29 @@ class LandingPage extends Page {
 
     //links
     get businessPlansLink()                      { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a', 'outerHTML'); }                    
-    get urlBusinessPlansPageUrl()                { return 'https://internet.frontier.com/business/'}   
+    get businessPlansPageUrl()                   { return 'https://internet.frontier.com/business/'}   
+    get existingCustomersLink()                  { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(2) > a', 'outerHTML'); }                    
+    get existingCustomersPageUrl()               { return 'https://internet.frontier.com/existing-customers.html'} 
+    get myAccountLink()                          { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(3) > a', 'outerHTML'); }                    
+    //get myAccountPageUrlRegex()                  { return 'https?:\/\/(www\.)?frontier\.com\/login\?target=[a-zA-Z0-9]{16}';} 
 
     clickBusinessPlansLink() {
         browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a');
     }
-    
+
+    clickExistingCustomersLink() {
+        browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(2) > a');
+    }
+
+    clickMyAccountLink() {
+        browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(3) > a');
+    }
+
+    get myAccountPageUrlRegex() {
+        var regex = new RegExp("https?:\\/\\/(www\.)?frontier\\.com\\/login\\?target=[a-zA-Z0-9]{16}");
+        console.log(regex);
+        return regex;
+    }
 
     open() {
         super.open('/');
