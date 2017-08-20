@@ -41,14 +41,18 @@ class LandingPage extends Page {
     get heroMonthlyDollarsPrice()                { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > div > p.price-hero-wordpress__amount'); }
     get heroMonthlyCentsPrice()                  { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > div > div > p.price-hero-wordpress__cents > span'); }
 
-    //links
+    //masthead links
     get businessPlansLink()                      { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a', 'outerHTML'); }                    
     get businessPlansPageUrl()                   { return 'https://internet.frontier.com/business/'}   
     get existingCustomersLink()                  { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(2) > a', 'outerHTML'); }                    
     get existingCustomersPageUrl()               { return 'https://internet.frontier.com/existing-customers.html'} 
     get espanolLink()                            { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(4) > a', 'outerHTML'); } 
     get espanolPageUrl()                         { return 'https://internet.frontier.com/espanol/'}                
- 
+    
+    //mega menu links
+    get allPlansLink()                            { return browser.getAttribute('#menu-item-5108 > a', 'outerHTML'); }
+    get allPlansPageUrl()                         { return 'https://internet.frontier.com/plans-pricing.html'}
+    
 
     clickBusinessPlansLink() {
         browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a');
@@ -70,6 +74,16 @@ class LandingPage extends Page {
         var regex = new RegExp("https?:\\/\\/(www\.)?frontier\\.com\\/login\\?target=[a-zA-Z0-9]{16}");
         return regex;
     }
+
+    clickAllPlansLink() {
+        //move mouse over Plans and Pricing to open menu and make All Plans link visible
+        browser.moveToObject('#menu-primary-1>#menu-item-4313 > a');
+        
+        //wait for menu to open and All Plans link to be visible
+        browser.waitForVisible('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5108 > a');
+        browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5108 > a');
+    }
+
 
     open() {
         super.open('/');
