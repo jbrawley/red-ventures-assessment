@@ -20,22 +20,25 @@ class LandingPage extends Page {
     get thirdImageRightColumn()             { return browser.element('img[src*="/assets/seo-b/images/sections/bg-section-home-two-col-3.png'); }
     get footerLogo()                        { return browser.element('img[src*="/assets/seo-b/images/logos/logo-ftr-black.png'); }
 
-    //1366 prices, phone numbers, and timer
+   //1024 images and graphics
+    get smallYellowPhoneIconInStickyBanner()     { return browser.element('body > header > div.hide-for-large-up > nav > div.row.small-collapse > div > div > a > span.masthead__phone-icon.icon-phone'); }
+    get topYellowPhoneIcon()                     { return browser.element('body > main > section:nth-child(2) > div > div > div > svg'); }
+    get bottomYellowPhoneIcon()                  { return browser.element('body > main > section:nth-child(13) > div > div > div > svg'); }
+    
+    //640 images and graphics
+    get mobileMenu()                             { return browser.element('body > header > div.hide-for-large-up > nav > div.row.has-bg-white > div > ul > li.toggle-topbar.top-bar--custom__toggle-topbar'); }
+    
+    //phone numbers
     get mastheadPhoneNumber()                           { return browser.element('body > header > div.show-for-large-up > section > div > div.small-4.columns.is-align-right > a'); }
     get regionBannerPhoneNumber()                       { return browser.element('body > main > section.banner.banner--countdown.has-bg-primary > div > div.large-4.columns > div > a'); }
     get mastfootPhoneNumber()                           { return browser.element('body > section > div > div.small-12.medium-6.columns.medium-text-left > div > a'); }
     get leftColumnButtonPhoneNumber()                   { return browser.element('body > main > section:nth-child(6) > div > div:nth-child(1) > a'); }
     get rightColumnButtonPhoneNumber()                  { return browser.element('body > main > section:nth-child(9) > div > div:nth-child(4) > a > span.h-phone'); }
 
-   //1024 components
-    get smallYellowPhoneIconInStickyBanner()     { return browser.element('body > header > div.hide-for-large-up > nav > div.row.small-collapse > div > div > a > span.masthead__phone-icon.icon-phone'); }
-    get topYellowPhoneIcon()                     { return browser.element('body > main > section:nth-child(2) > div > div > div > svg'); }
-    get bottomYellowPhoneIcon()                  { return browser.element('body > main > section:nth-child(13) > div > div > div > svg'); }
-    
-    //640 components
-    get mobileMenu()                             { return browser.element('body > header > div.hide-for-large-up > nav > div.row.has-bg-white > div > ul > li.toggle-topbar.top-bar--custom__toggle-topbar'); }
-    
-
+    //prices
+    get heroTermsPrice()                           { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > p'); }
+    get heroMonthlyDollarsPrice()                  { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > div > p.price-hero-wordpress__amount'); }
+    get heroMonthlyCentsPrice()                    { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > div > div > p.price-hero-wordpress__cents > span'); }
 
     open() {
         super.open('/');
