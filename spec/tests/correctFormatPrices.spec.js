@@ -1,6 +1,7 @@
 var LandingPage = require('../../spec/pageobjects/landing.page');
 var LandingPage = new LandingPage();
 
+//regex will need to be updated if the text may have other numbers in string
 var currencyRegex = new RegExp("((\\d{1,2}(,\\d{3})+)|(\\d+)(\\.\\d{2})?)");
 
 describe('Verify phone numbers are correctly formatted in ', () => {
