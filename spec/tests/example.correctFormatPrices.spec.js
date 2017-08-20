@@ -9,6 +9,7 @@ describe('Verify phone numbers are correctly formatted in ', () => {
 	// Open browser on landing page 
     LandingPage.open();
 
+    //test sometimes fails, need to add implicit wait to make sure it is loaded
     it('Should check if hero terms price is correctly formatted', function () {
     	expect(LandingPage.heroTermsPrice.getText()).toMatch(currencyRegex.source);
     });
