@@ -41,18 +41,24 @@ class LandingPage extends Page {
     get heroMonthlyDollarsPrice()                { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > div > p.price-hero-wordpress__amount'); }
     get heroMonthlyCentsPrice()                  { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > div > div > p.price-hero-wordpress__cents > span'); }
 
-    //masthead links
-    get businessPlansLink()                      { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a', 'outerHTML'); }                    
-    get businessPlansPageUrl()                   { return 'https://internet.frontier.com/business/'}   
-    get existingCustomersLink()                  { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(2) > a', 'outerHTML'); }                    
+    //Urls of pages masthead links navigate to      
+    get businessPlansPageUrl()                   { return 'https://internet.frontier.com/business/'}                      
     get existingCustomersPageUrl()               { return 'https://internet.frontier.com/existing-customers.html'} 
-    get espanolLink()                            { return browser.getAttribute('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(4) > a', 'outerHTML'); } 
     get espanolPageUrl()                         { return 'https://internet.frontier.com/espanol/'}                
     
-    //mega menu links
-    get allPlansLink()                            { return browser.getAttribute('#menu-item-5108 > a', 'outerHTML'); }
+    //Urls of pages mega menu links navigate to
     get allPlansPageUrl()                         { return 'https://internet.frontier.com/plans-pricing.html'}
-    
+    get bundlesPageUrl()                          { return 'https://internet.frontier.com/bundles/'}
+    get frontierFiosBundlesPageUrl()              { return 'https://internet.frontier.com/bundles/fios/'}
+    get frontierSecurePageUrl()                   { return 'https://internet.frontier.com/security.html'}
+    get highSpeedInternetPageUrl()                { return 'https://internet.frontier.com/services/'}
+    get fiosInternetPageUrl()                     { return 'https://internet.frontier.com/fios.html'}
+    get fiosTvPageUrl()                           { return 'https://internet.frontier.com/fios-tv/'}
+    get vantageTvPageUrl()                        { return 'https://internet.frontier.com/vantage-tv/'}
+    get phonePageUrl()                            { return 'https://internet.frontier.com/phone.html'}
+    get availabilityPageUrl()                     { return 'https://internet.frontier.com/local/'}
+    get orderNowPageUrl()                         { return 'https://internet.frontier.com/order.html'}
+
 
     clickBusinessPlansLink() {
         browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a');
@@ -72,6 +78,7 @@ class LandingPage extends Page {
 
     get myAccountPageUrlRegex() {
         var regex = new RegExp("https?:\\/\\/(www\.)?frontier\\.com\\/login\\?target=[a-zA-Z0-9]{16}");
+        
         return regex;
     }
 
@@ -84,6 +91,81 @@ class LandingPage extends Page {
         browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5108 > a');
     }
 
+    clickBundlesLink() {
+        //move mouse over Plans and Pricing to open menu and make All Plans link visible
+        browser.moveToObject('#menu-primary-1>#menu-item-4313 > a');
+        
+        //wait for menu to open and Bundles link to be visible
+        browser.waitForVisible('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4321 > a');
+        browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4321 > a');
+    }
+
+    clickFrontierFiosBundlesLink() {
+        //move mouse over Plans and Pricing link to open menu and make All Plans link visible
+        browser.moveToObject('#menu-primary-1>#menu-item-4313 > a');
+        
+        //wait for menu to open and Frontier Fios Bundles link to be visible
+        browser.waitForVisible('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5159 > a');
+        browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5159 > a');
+    }
+
+    clickFrontierSecureLink() {
+        //move mouse over FPlans and Pricing to open menu and make All Plans link visible
+        browser.moveToObject('#menu-primary-1>#menu-item-4313 > a');
+        
+        //wait for menu to open and Frontier Secure link to be visible
+        browser.waitForVisible('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4367 > a');
+        browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4367 > a');
+    }
+
+    clickHighSpeedInternetLink() {
+        //move mouse over Intenet menu item to open menu and make All Plans link visible
+        browser.moveToObject('#menu-primary-1>#menu-item-4314 > a');
+        
+        //wait for menu to open and High Speed Internet link to be visible
+        browser.waitForVisible('#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4323 > a');
+        browser.click('#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4323 > a');
+    }
+
+    clickFiosInternetLink() {
+        //move mouse over Intenet menu item to open menu and make All Plans link visible
+        browser.moveToObject('#menu-primary-1>#menu-item-4314 > a');
+        
+        //wait for menu to open and Fios Internet link to be visible
+        browser.waitForVisible('#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4324 > a');
+        browser.click('#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4324 > a');
+    }
+
+    clickFiosTvLink() {
+        //move mouse over Fios TV menu item to open menu and make All Plans link visible
+        browser.moveToObject('#menu-primary-1>#menu-item-4440 > a');
+        
+        //wait for menu to open and Fios TV link to be visible
+        browser.waitForVisible('#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4370 > a');
+        browser.click('#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4370 > a');
+    }
+
+    clickVantageTvLink() {
+        //move mouse over Vantage TV menu item to open menu and make All Plans link visible
+        browser.moveToObject('#menu-primary-1>#menu-item-4440 > a');
+        
+        //wait for menu to open and Vantage TV link to be visible
+        browser.waitForVisible('#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4369 > a');
+        browser.click('#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4369 > a');
+    }
+
+    clickPhoneLink() {
+        browser.click('ul#menu-primary-1.menu>#menu-item-4371 > a');
+    }
+
+    clickAvailabilityLink() {
+        browser.click('ul#menu-primary-1.menu>#menu-item-4372 > a');
+    }
+
+    clickOrderNowLink() {
+        browser.waitForVisible('ul#menu-primary-1.menu>#menu-item-4373 > a');
+        browser.click('ul#menu-primary-1.menu>#menu-item-4373 > a');
+    }
 
     open() {
         super.open('/');

@@ -56,7 +56,6 @@ describe('Verify links redirect correctly in ', () => {
         //get url of the new tab that was switched to 
         currentUrl = browser.getUrl();
        
-  
         expect(currentUrl).toMatch(LandingPage.espanolPageUrl);
         
         //return to the original tab
@@ -66,15 +65,98 @@ describe('Verify links redirect correctly in ', () => {
         browser.closeNewTab();   
     });
 
-    it('Should check that All Plans menu link redirects to correct page', function () {
+    xit('Should check that All Plans menu link redirects to correct page', function () {
         LandingPage.open();
         LandingPage.clickAllPlansLink();
         currentUrl = browser.getUrl();
+        
         expect(currentUrl).toMatch(LandingPage.allPlansPageUrl);
     });
+
+    xit('Should check that Bundles menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickBundlesLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.bundlesPageUrl);
+    });
+
+    xit('Should check that Frontier Fios Bundles menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickFrontierFiosBundlesLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.frontierFiosBundlesPageUrl);
+    });
+
+    xit('Should check that Frontier Secure menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickFrontierSecureLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.frontierSecurePageUrl);
+    });
+
+    xit('Should check that High Speed Internet menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickHighSpeedInternetLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.highSpeedInternetPageUrl);
+    });
+
+    xit('Should check that Fios Internet menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickFiosInternetLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.fiosInternetPageUrl);
+    });
+
+    xit('Should check that Fios TV menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickFiosTvLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.fiosTvPageUrl);
+    });
+
+    xit('Should check that Vantage TV menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickVantageTvLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.vantageTvPageUrl);
+    });
+
+    xit('Should check that Phone menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickPhoneLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.phonePageUrl);
+    });
+
+    it('Should check that Availability menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickAvailabilityLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.availabilityPageUrl);
+    });
+
+    it('Should check that Order Now menu link redirects to correct page', function () {
+        LandingPage.open();
+        LandingPage.clickOrderNowLink();
+        currentUrl = browser.getUrl();
+        
+        expect(currentUrl).toMatch(LandingPage.orderNowPageUrl);
+    });
 });
+
+
 /*
- * Create a function for switching tabs that can be used in tests where clicking links opens new tabs.  
+ * Create functions for navigating and closings tabs opened, that can be used in tests where clicking links opens new tabs.  
  * TODO: create a module for this helper method and import it
  */
 
