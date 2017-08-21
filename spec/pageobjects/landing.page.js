@@ -69,12 +69,14 @@ class LandingPage extends Page {
         browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(2) > a');
     }
 
-    clickMyAccountLink() {
+    clickMyAccountLinkAndSwitchTab() {
         browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(3) > a');
+        this.switchToNewTab();
     }
 
-    clickEspanolLink() {
+    clickEspanolLinkAndSwitchTab() {
         browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(4) > a');
+        this.switchToNewTab();
     }
 
     get myAccountPageUrlRegex() {
@@ -183,8 +185,9 @@ class LandingPage extends Page {
         browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(4) > a');
     }
 
-    clickMyAccountFooterLink() {
+    clickMyAccountFooterLinkAndSwitchTab() {
         browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(5) > a');
+        this.switchToNewTab();
     }
 
     clickPlansAndPricingFooterLink() {
@@ -199,8 +202,9 @@ class LandingPage extends Page {
         browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(3) > a');
     }
 
-    clickResourcesFooterLink() {
+    clickResourcesFooterLinkAndSwitchTab() {
         browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(1) > a');
+        this.switchToNewTab();
     }
 
     open() {
@@ -211,6 +215,45 @@ class LandingPage extends Page {
         this.form.submitForm();
     }
     
+    closeTheNewTab() {
+        //return to the original tab
+        this.returnToOriginalTab();
+        
+        //close the new tab that was created
+        this.closeNewTab(); 
+    }
+    /*
+ * Create functions for navigating and closings tabs opened, that can be used in tests where clicking links opens new tabs.  
+ * TODO: create a module for this helper method and import it so it can be used across pages being tested.
+ */
+
+
+//function to switch browser tabs
+    switchToNewTab() {
+    // get all open tab ids in an array
+    const openTabs = browser.getTabIds();
+
+    //switch to the new tab
+    browser.switchTab(openTabs[1]);
+    }
+
+//function to close a tab that was just opened.
+    closeNewTab() {
+    // get all open tab ids in an array
+    const openTabs = browser.getTabIds();
+    
+    //switch to the new tab
+    browser.close(openTabs[1]);
+    }
+
+//function to return to the originating tab
+    returnToOriginalTab() {
+    // get all open tab ids in an array
+    const openTabs = browser.getTabIds();
+
+    //switch to the new tab
+    browser.switchTab(openTabs[0]);
+    }
 
 }
 module.exports = LandingPage;

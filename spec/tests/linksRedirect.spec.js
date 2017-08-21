@@ -23,46 +23,33 @@ describe('Verify links redirect correctly in ', () => {
         expect(currentUrl).toMatch(LandingPage.existingCustomersPageUrl);
     });
  
-    xit('Should check that My Account link redirects to correct page', function () {
+    it('Should check that My Account link redirects to correct page', function () {
         LandingPage.open();
         
         //clicking this link will open new tab
-        LandingPage.clickMyAccountLink();
-        
-        //switch to the new tab that was opened      
-        browser.switchToNewTab();
+        LandingPage.clickMyAccountLinkAndSwitchTab();
         
         //get url of the new tab that was switched to       
         currentUrl = browser.getUrl();
      
         expect(currentUrl).toMatch(LandingPage.myAccountPageUrlRegex.source);
-        
-        //return to the original tab
-        browser.returnToOriginalTab();
-        
+      
         //close the new tab that was created
-        browser.closeNewTab(); 
+        LandingPage.closeTheNewTab(); 
     });
 
-    xit('Should check that Espanol link redirects to correct page', function () {
+    it('Should check that Espanol link redirects to correct page', function () {
         LandingPage.open();
         
         //clicking this link will open new tab
-        LandingPage.clickEspanolLink();
-        
-        //switch to the new tab that was opened
-        browser.switchToNewTab();
+        LandingPage.clickEspanolLinkAndSwitchTab();
         
         //get url of the new tab that was switched to 
         currentUrl = browser.getUrl();
        
         expect(currentUrl).toMatch(LandingPage.espanolPageUrl);
-        
-        //return to the original tab
-        browser.returnToOriginalTab()
-        
-        //close the new tab that was created
-        browser.closeNewTab();   
+
+        LandingPage.closeTheNewTab();   
     });
 
     xit('Should check that All Plans menu link redirects to correct page', function () {
@@ -190,21 +177,15 @@ describe('Verify links redirect correctly in ', () => {
         LandingPage.open();
         
         //clicking this link will open new tab
-        LandingPage.clickMyAccountFooterLink();
-        
-        //switch to the new tab that was opened      
-        browser.switchToNewTab();
+        LandingPage.clickMyAccountFooterLinkAndSwitchTab();
         
         //get url of the new tab that was switched to       
         currentUrl = browser.getUrl();
      
         expect(currentUrl).toMatch(LandingPage.myAccountPageUrlRegex.source);
-        
-        //return to the original tab
-        browser.returnToOriginalTab();
-        
+      
         //close the new tab that was created
-        browser.closeNewTab(); 
+        LandingPage.closeTheNewTab(); 
     });
 
     xit('Should check that Plans and Pricing footer link redirects to correct page', function () {
@@ -223,58 +204,22 @@ describe('Verify links redirect correctly in ', () => {
         expect(currentUrl).toMatch(LandingPage.bundlesPageUrl);
     });
 
-    it('Should check that Resources footer link redirects to correct page', function () {
+    xit('Should check that Resources footer link redirects to correct page', function () {
         LandingPage.open();
 
-        //clicking this link will open new tab
-        LandingPage.clickResourcesFooterLink();
+        //clicking this link will open new tab and switch focus
+        LandingPage.clickResourcesFooterLinkAndSwitchTab();
 
-        //switch to the new tab that was opened      
-        browser.switchToNewTab();
-        
         //get url of the new tab that was switched to
         currentUrl = browser.getUrl();
         
         expect(currentUrl).toMatch(LandingPage.resourcesPageUrl);
 
-        //return to the original tab
-        browser.returnToOriginalTab();
-        
-        //close the new tab that was created
-        browser.closeNewTab(); 
+        LandingPage.closeTheNewTab();
     });
 
+
+
 });
 
 
-/*
- * Create functions for navigating and closings tabs opened, that can be used in tests where clicking links opens new tabs.  
- * TODO: create a module for this helper method and import it
- */
-
-//function to switch browser tabs
-browser.addCommand("switchToNewTab", function () {
-    // get all open tab ids in an array
-    const openTabs = browser.getTabIds();
-
-    //switch to the new tab
-    browser.switchTab(openTabs[1]);
-});
-
-//function to close a tab that was just opened.
-browser.addCommand("closeNewTab", function () {
-    // get all open tab ids in an array
-    const openTabs = browser.getTabIds();
-    
-    //switch to the new tab
-    browser.close(openTabs[1]);
-});
-
-//function to return to the originating tab
-browser.addCommand("returnToOriginalTab", function () {
-    // get all open tab ids in an array
-    const openTabs = browser.getTabIds();
-
-    //switch to the new tab
-    browser.switchTab(openTabs[0]);
-});
