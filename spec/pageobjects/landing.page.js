@@ -58,8 +58,9 @@ class LandingPage extends Page {
     get phonePageUrl()                            { return 'https://internet.frontier.com/phone.html'}
     get availabilityPageUrl()                     { return 'https://internet.frontier.com/local/'}
     get orderNowPageUrl()                         { return 'https://internet.frontier.com/order.html'}
+    get resourcesPageUrl()                        { return 'http://internet.frontier.com/resources/'}
 
-
+    //Urls of pages of footer links navigate to
     clickBusinessPlansLink() {
         browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a');
     }
@@ -163,8 +164,43 @@ class LandingPage extends Page {
     }
 
     clickOrderNowLink() {
-        browser.waitForVisible('ul#menu-primary-1.menu>#menu-item-4373 > a');
         browser.click('ul#menu-primary-1.menu>#menu-item-4373 > a');
+    }
+
+    clickHighSpeedInternetFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1) > a');
+    }
+
+    clickHomePhoneFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(2) > a');
+    }
+
+    clickFiosServicesFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(3) > a');
+    }
+
+    clickExistingCustomersFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(4) > a');
+    }
+
+    clickMyAccountFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(5) > a');
+    }
+
+    clickPlansAndPricingFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(1) > a');
+    }
+
+    clickAddFrontierSecureFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(2) > a');
+    }
+
+    clickViewAllBundlesFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(3) > a');
+    }
+
+    clickResourcesFooterLink() {
+        browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(1) > a');
     }
 
     open() {
