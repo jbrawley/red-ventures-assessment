@@ -59,23 +59,62 @@ class LandingPage extends Page {
     get availabilityPageUrl()                     { return 'https://internet.frontier.com/local/'}
     get orderNowPageUrl()                         { return 'https://internet.frontier.com/order.html'}
     get resourcesPageUrl()                        { return 'http://internet.frontier.com/resources/'}
+    get espanolPageUrl()                          { return 'https://internet.frontier.com/espanol/'}
 
-    //Urls of pages of footer links navigate to
+    //top level menu items
+    get plansAndPricingMenu()                     { return '#menu-primary-1>#menu-item-4313 > a'}
+    get internetMenu()                            { return '#menu-primary-1>#menu-item-4314 > a'}
+    get tvMenu()                                  { return '#menu-primary-1>#menu-item-4440 > a'}
+    get phoneLink()                               { return 'ul#menu-primary-1.menu>#menu-item-4371 > a'}
+    get availabilityLink()                        { return 'ul#menu-primary-1.menu>#menu-item-4372 > a'}
+    get orderNowLink()                            { return 'ul#menu-primary-1.menu>#menu-item-4373 > a'}
+    
+    //submenu links
+    get businessPlansLink()                       { return 'body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a'} 
+    get existingCustomersLink()                   { return 'body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(2) > a'} 
+    get myAccountLink()                           { return 'body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(3) > a'} 
+    get espanolLink()                             { return 'body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(4) > a'} 
+    get allPlansLink()                            { return '#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5108 > a'} 
+    get bundlesLink()                             { return '#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4321 > a'}
+    get frontierSecureLink()                      { return '#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4367 > a'} 
+    get highSpeedInternetLink()                   { return '#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4323 > a'} 
+    get fiosInternetLink()                        { return '#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4324 > a'} 
+    get frontierFiosBundlesLink()                 { return '#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5159 > a'}  
+    get fiosTvLink()                              { return '#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4370 > a'} 
+    get vantageTvLink()                           { return '#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4369 > a'}  
+    get highSpeedInternetFooterLink()             { return 'body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1) > a'}  
+    get homePhoneFooterLink()                     { return 'body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(2) > a'}  
+    get fiosServicesFooterLink()                  { return 'body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(3) > a'}  
+    get existingCustomersFooterLink()             { return 'body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(4) > a'}  
+    get myAccountFooterLink()                     { return 'body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(5) > a'}  
+    get plansAndPricingFooterLink()               { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(1) > a'}  
+    get addFrontierSecureFooterLink()             { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(2) > a'}  
+    get viewAllBundlesFooterLink()                { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(3) > a'}  
+    get resourcesFooterLink()                     { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(1) > a'}  
+    get espanolFooterLink()                       { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(2) > a'}  
+
+
+
+
+
+    //footer links
+    
+
     clickBusinessPlansLink() {
-        browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(1) > a');
+        browser.click(this.businessPlansLink);
     }
 
     clickExistingCustomersLink() {
-        browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(2) > a');
+        browser.click(this.existingCustomersLink);
     }
 
     clickMyAccountLinkAndSwitchTab() {
-        browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(3) > a');
+        browser.click(this.myAccountLink);
         this.switchToNewTab();
     }
 
     clickEspanolLinkAndSwitchTab() {
-        browser.click('body > header > div.show-for-large-up > nav > div > div > ul > li:nth-child(4) > a');
+        browser.click(this.espanolLink);
         this.switchToNewTab();
     }
 
@@ -87,124 +126,130 @@ class LandingPage extends Page {
 
     clickAllPlansLink() {
         //move mouse over Plans and Pricing to open menu and make All Plans link visible
-        browser.moveToObject('#menu-primary-1>#menu-item-4313 > a');
+        browser.waitForVisible(this.plansAndPricingMenu);
+        browser.moveToObject(this.plansAndPricingMenu);
         
         //wait for menu to open and All Plans link to be visible
-        browser.waitForVisible('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5108 > a');
-        browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5108 > a');
+        browser.waitForVisible(this.allPlansLink);
+        browser.click(this.allPlansLink);
     }
 
     clickBundlesLink() {
         //move mouse over Plans and Pricing to open menu and make All Plans link visible
-        browser.moveToObject('#menu-primary-1>#menu-item-4313 > a');
+        browser.waitForVisible(this.plansAndPricingMenu);
+        browser.moveToObject(this.plansAndPricingMenu);
         
         //wait for menu to open and Bundles link to be visible
-        browser.waitForVisible('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4321 > a');
-        browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4321 > a');
+        browser.waitForVisible(this.bundlesLink);
+        browser.click(this.bundlesLink);
     }
 
     clickFrontierFiosBundlesLink() {
         //move mouse over Plans and Pricing link to open menu and make All Plans link visible
-        browser.moveToObject('#menu-primary-1>#menu-item-4313 > a');
+        browser.waitForVisible(this.plansAndPricingMenu);
+        browser.moveToObject(this.plansAndPricingMenu);
         
         //wait for menu to open and Frontier Fios Bundles link to be visible
-        browser.waitForVisible('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5159 > a');
-        browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-5159 > a');
+        browser.waitForVisible(this.frontierFiosBundlesLink);
+        browser.click(this.frontierFiosBundlesLink);
     }
 
     clickFrontierSecureLink() {
-        //move mouse over FPlans and Pricing to open menu and make All Plans link visible
-        browser.moveToObject('#menu-primary-1>#menu-item-4313 > a');
+        //move mouse over Plans and Pricing to open menu and make All Plans link visible
+        browser.moveToObject(this.plansAndPricingMenu);
         
         //wait for menu to open and Frontier Secure link to be visible
-        browser.waitForVisible('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4367 > a');
-        browser.click('#menu-primary-1>#menu-item-4313>ul.sub-menu>#menu-item-4367 > a');
+        browser.waitForVisible(this.frontierSecureLink);
+        browser.click(this.frontierSecureLink);
     }
 
     clickHighSpeedInternetLink() {
         //move mouse over Intenet menu item to open menu and make All Plans link visible
-        browser.moveToObject('#menu-primary-1>#menu-item-4314 > a');
+        browser.moveToObject(this.internetMenu);
         
         //wait for menu to open and High Speed Internet link to be visible
-        browser.waitForVisible('#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4323 > a');
-        browser.click('#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4323 > a');
+        browser.waitForVisible(this.highSpeedInternetLink);
+        browser.click(this.highSpeedInternetLink);
     }
 
     clickFiosInternetLink() {
         //move mouse over Intenet menu item to open menu and make All Plans link visible
-        browser.moveToObject('#menu-primary-1>#menu-item-4314 > a');
+        browser.moveToObject(this.internetMenu);
         
         //wait for menu to open and Fios Internet link to be visible
-        browser.waitForVisible('#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4324 > a');
-        browser.click('#menu-primary-1>#menu-item-4314>ul.sub-menu>#menu-item-4324 > a');
+        browser.waitForVisible(this.fiosInternetLink);
+        browser.click(this.fiosInternetLink);
     }
 
     clickFiosTvLink() {
-        //move mouse over Fios TV menu item to open menu and make All Plans link visible
-        browser.moveToObject('#menu-primary-1>#menu-item-4440 > a');
+        //move mouse over TV menu item to open menu and make All Plans link visible
+        browser.moveToObject(this.tvMenu);
         
         //wait for menu to open and Fios TV link to be visible
-        browser.waitForVisible('#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4370 > a');
-        browser.click('#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4370 > a');
+        browser.waitForVisible(this.fiosTvLink);
+        browser.click(this.fiosTvLink);
     }
 
     clickVantageTvLink() {
         //move mouse over Vantage TV menu item to open menu and make All Plans link visible
-        browser.moveToObject('#menu-primary-1>#menu-item-4440 > a');
+        browser.moveToObject(this.tvMenu);
         
         //wait for menu to open and Vantage TV link to be visible
-        browser.waitForVisible('#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4369 > a');
-        browser.click('#menu-primary-1>#menu-item-4440>ul.sub-menu>#menu-item-4369 > a');
+        browser.waitForVisible(this.vantageTvLink);
+        browser.click(this.vantageTvLink);
     }
 
     clickPhoneLink() {
-        browser.click('ul#menu-primary-1.menu>#menu-item-4371 > a');
+        browser.click(this.phoneLink);
     }
 
     clickAvailabilityLink() {
-        browser.click('ul#menu-primary-1.menu>#menu-item-4372 > a');
+        browser.click(this.availabilityLink);
     }
 
     clickOrderNowLink() {
-        browser.click('ul#menu-primary-1.menu>#menu-item-4373 > a');
+        browser.click(this.orderNowLink);
     }
-
     clickHighSpeedInternetFooterLink() {
-        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(1) > a');
+        browser.click(this.highSpeedInternetFooterLink);
     }
 
     clickHomePhoneFooterLink() {
-        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(2) > a');
+        browser.click(this.homePhoneFooterLink);
     }
 
     clickFiosServicesFooterLink() {
-        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(3) > a');
+        browser.click(this.fiosServicesFooterLink);
     }
 
     clickExistingCustomersFooterLink() {
-        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(4) > a');
+        browser.click(this.existingCustomersFooterLink);
     }
 
     clickMyAccountFooterLinkAndSwitchTab() {
-        browser.click('body > footer > div:nth-child(1) > div:nth-child(1) > ul > li:nth-child(5) > a');
+        browser.click(this.myAccountFooterLink);
         this.switchToNewTab();
     }
 
     clickPlansAndPricingFooterLink() {
-        browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(1) > a');
+        browser.click(this.plansAndPricingFooterLink);
     }
 
     clickAddFrontierSecureFooterLink() {
-        browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(2) > a');
+        browser.click(this.addFrontierSecureFooterLink);
     }
 
     clickViewAllBundlesFooterLink() {
-        browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(3) > a');
+        browser.click(this.viewAllBundlesFooterLink);
     }
 
     clickResourcesFooterLinkAndSwitchTab() {
-        browser.click('body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(1) > a');
+        browser.click(this.resourcesFooterLink);
         this.switchToNewTab();
+    }
+
+    clickEspanolFooterLink() {
+        browser.click(this.espanolFooterLink);
     }
 
     open() {
