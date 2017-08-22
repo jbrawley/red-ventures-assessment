@@ -8,7 +8,7 @@ var Page = require('./page');
 
 
 class LandingPage extends Page {
-    
+
     //1366 images and graphics
     get mastheadLogo()                          { return browser.element('.small-12.columns>.masthead__logo'); }
     get phoneIconInMastheadBanner()             { return browser.element('body > header > div.show-for-large-up > section > div > div.small-4.columns.is-align-right > div'); }
@@ -94,19 +94,23 @@ class LandingPage extends Page {
     get espanolFooterLink()                       { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(2) > a'}  
 
     //get display property
-    get loader()                                  {return  browser.element('loader--cart'); }
+    get loader()                                  {return  browser.element('body > main > section.banner.banner--address > div:nth-child(1) > div > div'); }
+    get loaderLocator()                           {return  'body > main > section.banner.banner--address > div:nth-child(1) > div > div'; }
     
-    //form
+    //check availability form
     get addressForm()                           {return  browser.element('#address-check'); }
-
-    //form elements
+    get addressFormLocator()                     {return  '#address-check'}
+    
+    //check availability form elements
     get formAddress()                           {return  browser.element('#street'); }
     get formCity()                              {return  browser.element('#city'); }
     get formState()                             {return  browser.element('#state'); }
     get formZip()                               {return  browser.element('#zip'); }
     get stateChosen()                           {return  browser.element('#state_chosen > a'); }
     get stateChosenSpan()                       {return  browser.element('#state_chosen > a > span'); }
-                    
+    
+    get checkAvailabilityButtonLocator()               {return  '#address-check > div.medium-6.medium-push-6.columns > input' }
+    
 
     //footer links
     
@@ -272,8 +276,8 @@ class LandingPage extends Page {
     }
 
     waitForLoaderToBeVisible() {
-        browser.waitForVisible(this.Loader , 10000)
-        return isVisible(this.Loader)
+        browser.waitForVisible(this.LoaderLocator, 10000);
+        return browser.isVisible(this.LoaderLocator);
     }
     
     closeTheNewTab() {
@@ -283,6 +287,44 @@ class LandingPage extends Page {
         //close the new tab that was created
         this.closeNewTab(); 
     }
+
+    //TODO: pull in data from file
+    fillAddressFormWithValidData() {
+        this.waitForAddressFormToBeVisible();
+        this.formAddress.setValue('1 address');
+        this.formCity.setValue('city');
+        this.setStateInAddressForm;
+        this.formZip.setValue('29414');
+    }
+
+    pollForLoaderToDisplay() {
+        var formSubmittedAndPassedValidation;
+        var i;
+        //check at a regular interval for the loader to display, return true if it does, return if it is not false.  Will poll for 5 seconds before failing
+        for(i = 0; i <= 25; i++) {
+            browser.pause(200);
+            if (this.loader.isVisible()) {
+                formSubmittedAndPassedValidation = true;
+                //exit loop if the loader is displayed
+                { break; }
+            } else {
+                formSubmittedAndPassedValidation = false;
+            }
+        }
+
+        //if the loader was found by poll, it will return true
+        return  formSubmittedAndPassedValidation;
+    }
+
+    waitForAddressFormToBeVisible() {
+        browser.waitForVisible(this.addressFormLocator);
+        return browser.isVisible(this.addressFormLocator);
+    }
+
+    clickCheckAvailabilityButton() {
+        browser.click(this.checkAvailabilityButtonLocator);
+    }
+       
     /*
  * Create functions for navigating and closings tabs opened, that can be used in tests where clicking links opens new tabs.  
  * TODO: create a module for this helper method and import it so it can be used across pages being tested.
@@ -314,6 +356,14 @@ class LandingPage extends Page {
 
     //switch to the new tab
     browser.switchTab(openTabs[0]);
+    }
+
+    setStateInAddressForm() {
+        browser.execute(function() {
+            /*I wanted to pass the selectors in as parameters, but the selectorExecute method kept erroring without enough information for me to understand why*/
+            document.querySelector("#state_chosen > a").className = "chosen-single";
+            document.querySelector('#state_chosen > a > span').innerHTML = 'MO';
+        });
     }
 
 }
