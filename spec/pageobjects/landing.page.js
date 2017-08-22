@@ -112,9 +112,7 @@ class LandingPage extends Page {
     get checkAvailabilityButtonLocator()               {return  '#address-check > div.medium-6.medium-push-6.columns > input' }
     
 
-    //footer links
-    
-
+    //click footer link functions
     clickBusinessPlansLink() {
         browser.click(this.businessPlansLink);
     }
@@ -275,18 +273,12 @@ class LandingPage extends Page {
         this.addressForm.submitForm();
     }
 
+    //waits for loader to be visible when submitting check availability form
     waitForLoaderToBeVisible() {
         browser.waitForVisible(this.LoaderLocator, 10000);
         return browser.isVisible(this.LoaderLocator);
     }
     
-    closeTheNewTab() {
-        //return to the original tab
-        this.returnToOriginalTab();
-        
-        //close the new tab that was created
-        this.closeNewTab(); 
-    }
 
     //TODO: pull in data from file
     fillAddressFormWithValidData() {
@@ -297,6 +289,7 @@ class LandingPage extends Page {
         this.formZip.setValue('29414');
     }
 
+    //poll for loader that appears after clicking Check Availability button to submit form
     pollForLoaderToDisplay() {
         var formSubmittedAndPassedValidation;
         var i;
@@ -321,17 +314,17 @@ class LandingPage extends Page {
         return browser.isVisible(this.addressFormLocator);
     }
 
+    //Click button to submit the address form
     clickCheckAvailabilityButton() {
         browser.click(this.checkAvailabilityButtonLocator);
     }
        
-    /*
+/*
  * Create functions for navigating and closings tabs opened, that can be used in tests where clicking links opens new tabs.  
  * TODO: create a module for this helper method and import it so it can be used across pages being tested.
  */
 
-
-//function to switch browser tabs
+    //function to switch browser tabs
     switchToNewTab() {
     // get all open tab ids in an array
     const openTabs = browser.getTabIds();
@@ -340,7 +333,7 @@ class LandingPage extends Page {
     browser.switchTab(openTabs[1]);
     }
 
-//function to close a tab that was just opened.
+    //function to close a tab that was just opened.
     closeNewTab() {
     // get all open tab ids in an array
     const openTabs = browser.getTabIds();
@@ -349,7 +342,15 @@ class LandingPage extends Page {
     browser.close(openTabs[1]);
     }
 
-//function to return to the originating tab
+    //method combines closing tabs and returning to original
+    closeTheNewTab() {
+    //return to the original tab
+    this.returnToOriginalTab();
+        
+    //close the new tab that was created
+    this.closeNewTab(); 
+
+    //function to return to the originating tab
     returnToOriginalTab() {
     // get all open tab ids in an array
     const openTabs = browser.getTabIds();
