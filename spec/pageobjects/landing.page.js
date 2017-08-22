@@ -93,9 +93,20 @@ class LandingPage extends Page {
     get resourcesFooterLink()                     { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(1) > a'}  
     get espanolFooterLink()                       { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(2) > a'}  
 
+    //get display property
+    get loader()                                  {return  browser.element('loader--cart'); }
+    
+    //form
+    get addressForm()                           {return  browser.element('#address-check'); }
 
-
-
+    //form elements
+    get formAddress()                           {return  browser.element('#street'); }
+    get formCity()                              {return  browser.element('#city'); }
+    get formState()                             {return  browser.element('#state'); }
+    get formZip()                               {return  browser.element('#zip'); }
+    get stateChosen()                           {return  browser.element('#state_chosen > a'); }
+    get stateChosenSpan()                       {return  browser.element('#state_chosen > a > span'); }
+                    
 
     //footer links
     
@@ -256,8 +267,13 @@ class LandingPage extends Page {
         super.open('/');
     }
     
-    submit() {
-        this.form.submitForm();
+    submitAddressForm() {
+        this.addressForm.submitForm();
+    }
+
+    waitForLoaderToBeVisible() {
+        browser.waitForVisible(this.Loader , 10000)
+        return isVisible(this.Loader)
     }
     
     closeTheNewTab() {
