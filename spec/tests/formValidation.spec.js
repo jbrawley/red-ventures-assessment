@@ -4,41 +4,7 @@ var LandingPage = new LandingPage();
 
 describe('Form Validation', () => {
 
-	LandingPage.open();
-
-/*
-	xit('should fail',  function () {
-		var elem = LandingPage.loaderBanner;
-		var display = browser.selectorExecute(elem, function(elem)) {
-  			
-    			var theCSSprop = window.getComputedStyle(elem).getPropertyValue("display"); 
-    			var theCSSprop = window.getComputedStyle(document.getElementsByClassName('loader--cart')[0]).display;
- 				
- 				return theCSSprop;
- 		});
-		
-		expect(LandingPage.loaderBanner.getAttribute('display')).toBe('asdf');
-		expect(display).toMatch('none');
-	});
-*/
-/*
-	xit('submit empty form',  function () {
-		
-		LandingPage.submitAddressForm();
-		var validationFailed;
-		for(i = 0; i <= 4; i++) {
-			browser.pause(500);
-			if (LandingPage.loader.isVisible()) {
-				validationFailed = true;
-				console.log(validationFailed);
-			}
-		}
-
-		browser.pause(500);
-		expect(validationFailed).not.toBe(true);
-	});
-*/
-	
+	LandingPage.open();	
 
 	it('submit empty form',  function () {
 		//wait for address form to be visible and fill form
@@ -54,11 +20,13 @@ describe('Form Validation', () => {
 	});
 
 
-	it('submit valid form',  function () {
-		var formSubmittedAndPassedValidation;
+	it('submit form with valid data',  function () {
 		
-		//wait for address form to be visible and fill form
-		LandingPage.fillAddressFormWithValidData()
+		var formSubmittedAndPassedValidation;
+		//set variable to true to get valid data
+		var validData = true;
+		//wait for address form to be visible and fill formorm	
+		LandingPage.fillAddressFormWithData(validData);
 		
 		//click button to submit form, this triggers JS that I cannot get to run when using submitForm();
 		LandingPage.clickCheckAvailabilityButton();
@@ -69,4 +37,20 @@ describe('Form Validation', () => {
 		expect(formSubmittedAndPassedValidation).toBe(true);
 	});	
 
+	//Same steps as submitting form with valid data, except added a method to change the Zip code to invalid, since it is the only one with anything other than "required validation"
+	it('submit form with invalid data',  function () {
+		var formSubmittedAndPassedValidation;
+		//set variable to false to get invalid data
+		var validData = false;
+		//wait for address form to be visible and fill form
+		LandingPage.fillAddressFormWithData(validData);
+
+		//click button to submit form, this triggers JS that I cannot get to run when using submitForm();
+		LandingPage.clickCheckAvailabilityButton();
+
+		//poll for Loader to display after submitting form, if it is true, that means it passed the HTML5 validation and loader displayed on page before redirecting
+		formSubmittedAndPassedValidation = LandingPage.pollForLoaderToDisplay();
+		
+		expect(formSubmittedAndPassedValidation).toBe(true);
+	});
 });

@@ -281,13 +281,23 @@ class LandingPage extends Page {
     
 
     //TODO: pull in data from file
-    fillAddressFormWithValidData() {
+    //parameter is boolean true for valid data, false for invalid data
+    fillAddressFormWithData(dataset) {
+        if(dataset) {
         this.waitForAddressFormToBeVisible();
         this.formAddress.setValue('1 address');
         this.formCity.setValue('city');
         this.setStateInAddressForm;
         this.formZip.setValue('29414');
+        } else {
+        this.waitForAddressFormToBeVisible();
+        this.formAddress.setValue('1 address');
+        this.formCity.setValue('city');
+        this.setStateInAddressForm;
+        this.formZip.setValue('1');
+        }
     }
+
 
     //poll for loader that appears after clicking Check Availability button to submit form
     pollForLoaderToDisplay() {
@@ -349,6 +359,7 @@ class LandingPage extends Page {
         
     //close the new tab that was created
     this.closeNewTab(); 
+    }
 
     //function to return to the originating tab
     returnToOriginalTab() {
