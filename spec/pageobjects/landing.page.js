@@ -98,19 +98,35 @@ class LandingPage extends Page {
     get loaderLocator()                           {return  'body > main > section.banner.banner--address > div:nth-child(1) > div > div'; }
     
     //check availability form
-    get addressForm()                           {return  browser.element('#address-check'); }
-    get addressFormLocator()                     {return  '#address-check'}
+    get addressForm()                             {return  browser.element('#address-check'); }
+    get addressFormLocator()                      {return  '#address-check'}
     
     //check availability form elements
-    get formAddress()                           {return  browser.element('#street'); }
-    get formCity()                              {return  browser.element('#city'); }
-    get formState()                             {return  browser.element('#state'); }
-    get formZip()                               {return  browser.element('#zip'); }
-    get stateChosen()                           {return  browser.element('#state_chosen > a'); }
-    get stateChosenSpan()                       {return  browser.element('#state_chosen > a > span'); }
+    get formAddress()                             {return  browser.element('#street'); }
+    get formCity()                                {return  browser.element('#city'); }
+    get formState()                               {return  browser.element('#state'); }
+    get formZip()                                 {return  browser.element('#zip'); }
+    get stateChosen()                             {return  browser.element('#state_chosen > a'); }
+    get stateChosenSpan()                         {return  browser.element('#state_chosen > a > span'); }
+    //buttons
+    //button for address form
+    get checkAvailabilityButtonLocator()          {return  '#address-check > div.medium-6.medium-push-6.columns > input' }
+    get checkAvailabilityButton()                 {return  browser.element('#address-check > div.medium-6.medium-push-6.columns > input') }
     
-    get checkAvailabilityButtonLocator()               {return  '#address-check > div.medium-6.medium-push-6.columns > input' }
-    
+    get heroShopNowButton()                       {return  browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > div > a'); }
+    get callToOrderButtonLeftColumn()             {return  browser.element('body > main > section:nth-child(6) > div > div:nth-child(1) > a'); }
+    get callToOrderButtonRightColumn()            {return  browser.element('body > main > section:nth-child(9) > div > div:nth-child(4) > a'); }
+    get shopNowButton()                           {return  browser.element('body > main > section.section.section--img-bg-internet.is-white.is-centered > div > div > a'); }
+
+    get buttonArray() {
+        return buttons = [this.heroShopNowButton, callToOrderButtonRightColumn, callToOrderButtonLeftColumn, shopNowButton, checkAvailabilityButton];
+    }
+
+    get buttonFontSize                            {return '16px'}  
+    get buttonFontFamily                          {return 'Montserrat-Bold,Arial,sans-serif'} 
+    get buttonLineHeight                          {return '17px'}  
+    get buttonColor                               {return '#fff'}
+    get buttonHoverColor                          {return '#fff'}
 
     //click footer link functions
     clickBusinessPlansLink() {
@@ -302,9 +318,9 @@ class LandingPage extends Page {
     //poll for loader that appears after clicking Check Availability button to submit form
     pollForLoaderToDisplay() {
         var formSubmittedAndPassedValidation;
-        var i;
+       
         //check at a regular interval for the loader to display, return true if it does, return if it is not false.  Will poll for 5 seconds before failing
-        for(i = 0; i <= 25; i++) {
+        for(var i = 0; i <= 25; i++) {
             browser.pause(200);
             if (this.loader.isVisible()) {
                 formSubmittedAndPassedValidation = true;
