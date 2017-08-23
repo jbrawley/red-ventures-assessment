@@ -23,12 +23,7 @@ describe('Verify elements css styling is consistent', () => {
   			}
 		}
 		
-		expect(ElementStyleIsConsistent).toBe.(true);	
-
-
-	 	/*iterate through button array and compare to attribute
-	 	if any buttons do not match set flag for failure
-	 	expect all button to have same attribute*/
+		expect(ElementStyleIsConsistent).toBe(true);	
 	});
 
 	compareCssProperty(selector, propertyName, propertyValue) {
@@ -39,6 +34,9 @@ describe('Verify elements css styling is consistent', () => {
 			return false;
 		}
 	}
+
+});
+
 /*
 font-size
 font-family
@@ -47,5 +45,3 @@ color
 
  */
 
-
-});

@@ -122,11 +122,11 @@ class LandingPage extends Page {
         return buttons = [this.heroShopNowButton, callToOrderButtonRightColumn, callToOrderButtonLeftColumn, shopNowButton, checkAvailabilityButton];
     }
 
-    get buttonFontSize                            {return '16px'}  
-    get buttonFontFamily                          {return 'Montserrat-Bold,Arial,sans-serif'} 
-    get buttonLineHeight                          {return '17px'}  
-    get buttonColor                               {return '#fff'}
-    get buttonHoverColor                          {return '#fff'}
+    get buttonFontSize()                            {return '16px'}  
+    get buttonFontFamily()                          {return 'Montserrat-Bold,Arial,sans-serif'} 
+    get buttonLineHeight()                          {return '17px'}  
+    get buttonColor()                               {return '#fff'}
+    get buttonHoverColor()                          {return '#fff'}
 
     //click footer link functions
     clickBusinessPlansLink() {
