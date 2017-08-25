@@ -38,6 +38,7 @@ class LandingPage extends Page {
 
     //prices
     get heroTermsPrice()                         { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > p'); }
+    get heroTermsPriceLocator()                  { return 'body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > p' }
     get heroMonthlyDollarsPrice()                { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > div > p.price-hero-wordpress__amount'); }
     get heroMonthlyCentsPrice()                  { return browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > span > div > div > p.price-hero-wordpress__cents > span'); }
 
@@ -92,6 +93,19 @@ class LandingPage extends Page {
     get viewAllBundlesFooterLink()                { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--right > ul > li:nth-child(3) > a'}  
     get resourcesFooterLink()                     { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(1) > a'}  
     get espanolFooterLink()                       { return 'body > footer > div:nth-child(1) > div.medium-4.columns.margin-fix--left > ul > li:nth-child(2) > a'}  
+    get footerLinksArray() {
+        var links;
+        return  links = [ this.highSpeedInternetFooterLink, 
+                            this.homePhoneFooterLink, 
+                            this.fiosServicesFooterLink, 
+                            this.existingCustomersFooterLink,
+                            this.myAccountFooterLink,
+                            this.plansAndPricingFooterLink,
+                            this.addFrontierSecureFooterLink,
+                            this.viewAllBundlesFooterLink,
+                            this.resourcesFooterLink,
+                            this.espanolFooterLink ];
+    }
 
     //get display property
     get loader()                                  {return  browser.element('body > main > section.banner.banner--address > div:nth-child(1) > div > div'); }
@@ -110,24 +124,25 @@ class LandingPage extends Page {
     get stateChosenSpan()                         {return  browser.element('#state_chosen > a > span'); }
     //buttons
     //button for address form
-    get checkAvailabilityButtonLocator()          {return  '#address-check > div.medium-6.medium-push-6.columns > input' }
-    get checkAvailabilityButton()                 {return  browser.element('#address-check > div.medium-6.medium-push-6.columns > input') }
-    
-    get heroShopNowButton()                       {return  browser.element('body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > div > a'); }
-    get callToOrderButtonLeftColumn()             {return  browser.element('body > main > section:nth-child(6) > div > div:nth-child(1) > a'); }
-    get callToOrderButtonRightColumn()            {return  browser.element('body > main > section:nth-child(9) > div > div:nth-child(4) > a'); }
-    get shopNowButton()                           {return  browser.element('body > main > section.section.section--img-bg-internet.is-white.is-centered > div > div > a'); }
-
+    get checkAvailabilityButtonLocator()                {return  '#address-check > div.medium-6.medium-push-6.columns > input' }
+    get checkAvailabilityButton()                       {return  browser.element('#address-check > div.medium-6.medium-push-6.columns > input') }
+    get callToOrderButtonLeftColumnLocator()              {return '/html/body/main/section[5]/div/div[1]/a'}
+    get heroShopNowButtonLocator()                      {return  'body > main > section.hero-wordpress > div > div.small-12.large-7.columns > div.price-hero-wordpress > div' }
+    //get callToOrderButtonLeftColumnLocator()             {return  'body > main > section:nth-child(6) > div > div:nth-child(1) > a' }
+   // get callToOrderButtonRightColumnLocator()            {return  'body > main > section:nth-child(9) > div > div:nth-child(4) > a' }
+    get shopNowButtonLocator()                           {return  'body > main > section.section.section--img-bg-internet.is-white.is-centered > div > div > a' }
+    get callToOrderButtonRightColumnLocator()            {return 'body > main > section:nth-child(7) > div > div:nth-child(4) > a > span.h-phone' }
     get buttonArray() {
-        return buttons = [this.heroShopNowButton, callToOrderButtonRightColumn, callToOrderButtonLeftColumn, shopNowButton, checkAvailabilityButton];
+        var buttons;
+        return  buttons = [/*this.heroShopNowButtonLocator,*/ this.callToOrderButtonRightColumnLocator, this.callToOrderButtonLeftColumnLocator, this.shopNowButtonLocator, this.checkAvailabilityButtonLocator];
     }
 
-    get buttonFontSize()                            {return '16px'}  
-    get buttonFontFamily()                          {return 'Montserrat-Bold,Arial,sans-serif'} 
+    //get buttonFontSize()                            {return '16px'}  
+    get buttonFontFamily()                          {return 'arial'} 
     get buttonLineHeight()                          {return '17px'}  
-    get buttonColor()                               {return '#fff'}
+    get buttonColor()                               {return 'rgba(255,255,255,1)'}
     get buttonHoverColor()                          {return '#fff'}
-
+    get linkColor()                                 {return 'rgba(214,42,51,1)'}
     //click footer link functions
     clickBusinessPlansLink() {
         browser.click(this.businessPlansLink);
@@ -393,6 +408,19 @@ class LandingPage extends Page {
             document.querySelector('#state_chosen > a > span').innerHTML = 'MO';
         });
     }
+
+    compareCssProperty(selector, propertyName, propertyValue) {
+        var attr = browser.getCssProperty(selector, propertyName); 
+        var attrValue = attr['value'];
+
+        if(attrValue == propertyValue) {
+            return true;
+        } else {    
+            return false;
+        }
+    }
+
+
 
 }
 module.exports = LandingPage;
