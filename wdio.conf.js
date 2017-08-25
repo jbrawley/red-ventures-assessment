@@ -131,7 +131,7 @@ exports.config = {
     jasmineNodeOpts: {
         //
         // Jasmine default timeout
-        defaultTimeoutInterval: 10000,
+        defaultTimeoutInterval: 10000 * 3,
         //
         // The Jasmine framework allows interception of each assertion in order to log the state of the application
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
@@ -173,6 +173,8 @@ exports.config = {
 
     before: function (capabilities, specs) {
         browser.windowHandleSize({width: 1366, height: 768})
+       // browser.windowHandleSize({width: 1024, height: 768})
+       // browser.windowHandleSize({width: 640, height: 768})
     },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
