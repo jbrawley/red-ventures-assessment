@@ -16,15 +16,14 @@
     "webdriverio": "^4.8.0"
   },
   "scripts": {
-    "scripts": {
     "start": "nw"
-    },
-/*
+  },
+
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scripts": {
       "test": "jasmine"
     }
-*/
   },
   "author": "Jake Brawley",
   "license": "ISC"
