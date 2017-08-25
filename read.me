@@ -1,0 +1,175 @@
+Instructions to run the test files.
+Must have git and npm installed
+
+npm init 
+ npm install red-ventures-qa-test-files
+git clone https://github.com/jbrawley/red-ventures-assessment.git
+From test-files dir ‘wdio wdio.conf.js’
+
+Approach
+
+Step 1.  Began by reading through the new set of instructions.  Continuing with plan to use the WebdriverIO implementation of the Webdriver API and it’s integrated test runner, along with the Jasmine assertion library.
+
+Step 2.  Explore landing page and identify components, interactions, use cases
+
+Explore landing page.(Began with Chrome/Linux/Desktop Configuration)  
+Identify components
+Header links(click to navigate, cursor change on hover, consistent with cursor change on similar elements, check clickable area)
+Logo(click to navigate, cursor change on hover, consistent with cursor change on similar elements, check clickable area)
+Mega Menu navigation
+Dropdowns(red arrow to indicate dropdown options, slide animation on/off hover,  cursor change on hover, consistent with cursor change on similar elements, check clickable area)
+Child elements have red text, color change on hover
+Banner
+Message and countdown timer.
+Promo code
+Phone icon and phone number
+Sticky, remains visible on scroll
+Hero image
+Shop now button
+on/off hover styling change of button 
+Call to action banner below Hero image
+Icon and phone number
+Consistent with styling of icon and phone number in top banner
+Call to action
+Count down timer
+Synchronized with timer in sticky banner
+Icon and “Check for Dealers in Your Area!”
+Check Availability Form
+Street address
+Text box
+Tooltip on hover
+Styling change on focus
+Required validation
+No Regex Validation
+City
+Text box
+Tooltip on hover
+Styling Change on Focus
+Required validation
+No Regex Validation
+State
+Dropdown
+Filter
+Options in alphabetic order, includes DC
+Magnifying glass icon
+Scroll
+Hover
+No tooltip
+No Styling change on focus
+Not required validation
+Zip
+Text Box
+Tooltip on hover
+Styling change on focus
+Required validation
+Regex validation
+“Limited Time! Get HBO included for 24 months.[2]” copy
+Check Availability button
+Border
+Qualified for unbeatable deals form displays after submitting info
+Best Deal Flag
+Order Now Buttons
+on/off hover styling change of button
+New block and animation appears when submitting form before redirect.
+Submitting form redirects to new page
+Copy with Call to Order Now! button
+Phone number consistent 
+on/off hover styling change of button
+Image aligned with copy
+Why Frontier Communications block
+4 areas with text
+Image 
+Frontier Bundles security and protection block aligned with image
+Frontier Bundles Get more Value block
+Call to order button
+on/off hover styling change of button
+Consistent with buttons on page
+Talk with us copy
+Image aligned with Talk with us copy
+Save Big w/Bundles image
+Shop Now Button
+on/off hover styling change of button
+Consistent with buttons on page
+Call now for free installation on bundles banner
+Icon and phone number with consistent styling with stick banner
+No countdown timer
+Footer
+Footer headings
+Footer links 
+Footnotes
+Clickable Logo
+Cursor change on/off hover
+More footer links
+Copyright(current year displayed)
+
+Identify what user-actions can be taken
+Click links and logos to naviage
+Header
+Footer
+Mega Menu
+Submit Check Availability Form
+Click Shop Now buttons to Navigate
+Click buttons to call
+
+Identify what test data may be needed
+
+
+Identify if different user types can interact with page
+New customers
+Existing customers
+Identify if the page is responsive
+Identify what JavaScript interactions exist
+Explore for anything else that may have been looked over. 
+Check redirects(http vs https, trailing /.
+Landing page is responsive, check breakpoints
+
+Observations: 
+
+Chrome/Desktop/Linux/Full Screen
+Suggest expanding hover and clickable area for child elements in mega menu to not just include text, but full width of dropdown for usability(desktop).
+Text for “Sec” part of countdown in banner moves as the digits width changes.  Suggest updating so that positioning of text does not changes as time updates.
+Console error on page load “Uncaught SyntaxError: Unexpected token :
+Console warning “(index):214 A Parser-blocking, cross site (i.e. different eTLD+1) script, https://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&ActivityID=998491&rnd=495703.4494473485, is invoked via document.write. The network request for this script MAY be blocked by the browser in this or a future page load due to poor network connectivity. If blocked in this page load, it will be confirmed in a subsequent console message.See https://www.chromestatus.com/feature/5718547946799104 for more details.”
+Scrolling with the State filter z-index issue.  If the list of states is open and you scroll it will remain in front of sticky header as you scroll down.
+The state filter is missing a top border.
+Console error when submitting form with invalid data: “An invalid form control with name='state' is not focusable.”
+Inconsistent formatting for prices.  In image in footnote, there is a price without a dollar sign and one with one.
+Existing customers link in header opens new tab and adds data to url.  Footer has different behavior and just redirects to https://internet.frontier.com/existing-customers.html, My account link in footer has same behavior as Existing Customers link in header.
+
+Step 3.  Edit testrunner configuration in wdio.conf.js:
+Edit config file to take screenshots on errors for troubleshooting purposes.
+Edit reporting options to get more useful information when tests run.
+Edit configuration to omit specific test files from being run, so the whole suite will not run whil doing development.  TODO: make it so I can pass a parameter to run specific files when executing from cli.
+
+Step 4.  Tests for Making sure images and graphics are all visible are in files for imagesAndGraphicsAreVisible files.  I created separate files for different breakpoints, as some images only show in some size files. Test Files are in Spec Directory  
+In order to run tests for different file size, the before function in the wdio.conf.js must be updated, so that that the correct WindowHandleSize is set for the test runner.  Can do this by commenting out the sizes you don’t want to run and leaving the size you want uncommented.  TODO:  create it so you can pass a parameter to the test runner to specify the size so you don’t need to edit the config file.
+
+
+Step 5..  Refactor test I created to use page object.  Currently using only one page object, although it would be better to create separate page objects for different sections of page to make it more readable.  I originally was trying to use just one, thinking that some of the elements would be used across the different test files, but the page is coming large and cumbersome to work with.  TODO:  refactor landing.page.js into multiple page objects for maintainability.
+	Landing.page.js is the page object being used, inherits from Page class that was created.
+
+Step 6. Tests for Making sure prices, phone numbers, and timer are formatted correctly (using regex)	
+correctFormatPhoneNumbers.spec.js
+correctFormatPrices.spec.js
+TODO tests for format timer
+
+Step 7.  Create tests for links redirecting correctly
+
+Step 8.  Create tests for comparing css styles of components
+
+Running short on time.  I created a test for buttons at first, but the selectors were not locating the buttons when I ran it for some reason.  I tried troubleshooting for a while, but to move on I changed the code to see if it worked with checking the styling of the links and it did.
+TODO:  fix tests to find buttons and check other components and styles on page.
+
+Step 9. create tests for matching text.  I’m not sure what is expected for this one, I would assume I would should store the copy in variables, select the text from the page and compare them.  I’m not used to creating tests for this normally, because our customers have always updated their copy in the cms systems without our involvement, so we did not check for this kind of thing with automation.
+
+Step 10. Create tests for checking javascript interactions.
+TODO: Ran out of time and did not complete this.
+
+Step 11. Go back through and modify tests for specific devices.
+TODO: Ran out of time and did not complete this
+
+Step 12.  Move project to Github, create instructions for running tests.
+
+
+
+
