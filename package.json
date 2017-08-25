@@ -1,5 +1,5 @@
 {
-  "name": "test-files",
+  "name": "red-ventures-qa-test-files",
   "version": "1.0.0",
   "description": "Red Ventures Assessment",
   "main": "index.js",
@@ -19,12 +19,6 @@
     "start": "nw"
   },
 
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "scripts": {
-      "test": "jasmine"
-    }
-  },
   "author": "Jake Brawley",
   "license": "ISC"
 }
